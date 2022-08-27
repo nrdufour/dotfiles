@@ -1,0 +1,14 @@
+
+{{- $work := false -}}{{/* true if this machine is personal */}}
+{{- $work = promptBool "work" -}}
+
+format: yaml
+
+data:
+  name: "Nicolas R. Dufour"
+  {{- if $work }}
+  email: "nicolas.dufour@sectigo.com"
+  {{- else }}
+  email: "nrdufour@gmail.com"
+  {{- end }}
+  work: "{{ $work }}"
