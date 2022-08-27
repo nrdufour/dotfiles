@@ -1,0 +1,22 @@
+# Maybe want to set a dynamic one as described here:
+# https://stackoverflow.com/questions/13995857/suppress-or-customize-intro-message-in-fish-shell
+#set -U fish_greeting "🐟"
+set -U fish_greeting ""
+
+set -gx KUBE_EDITOR vim
+set -gx VISUAL vim
+set -gx EDITOR vim
+set -gx GOPATH {{ .chezmoi.homeDir }}/go
+set -gx ANSIBLE_FORCE_COLOR true
+set -gx ANSIBLE_HOST_KEY_CHECKING False
+set -gx SOPS_AGE_KEY_FILE {{ .chezmoi.homeDir }}/.config/sops/age/keys.txt
+
+fish_add_path "{{ .chezmoi.homeDir }}/.local/bin"
+fish_add_path "{{ .chezmoi.homeDir }}/go/bin"
+
+if type -q starship
+    starship init fish | source
+end
+
+alias k=kubectl
+
